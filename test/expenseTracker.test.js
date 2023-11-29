@@ -3,7 +3,8 @@ import pgPromise from "pg-promise";
 import "dotenv/config";
 import trackerService from "../services/databaselogic.js";
 
-const connectionString =  "postgres://httjugcv:nsL8tId-QsmWQNfB_5CZHIntoLAmzYlS@ella.db.elephantsql.com/httjugcv";
+const connectionString =
+  "postgres://ytucoshw:CJpQ6YAzjMtk1x669-De3IuNtRDNGcqg@ella.db.elephantsql.com/ytucoshw";
 const db = pgPromise()(connectionString);
 
 describe("expenseTracker", () => {

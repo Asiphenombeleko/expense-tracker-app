@@ -3,35 +3,39 @@
 export default function expenseRoutes(services) {
   // Define a function to render the "index" view
   async function homeRoute(req, res) {
+  let allExpense =  await services.allExpenses()
+  console.log(allExpense);
     //Render the "index" view
-    res.render("index");
+    res.render("index", {
+        allExpense
+    });
   }
   //Define a function to handle adding an expense
   async function getExpense(req, res) {
     //Extract categoryId and amount from the request body
-    const { categoryId, amount, expense } = req.body;
+    const { category, amount, expense } = req.body;
     console.log(req.body);
 
     // Calculate total based on categoryId
     let total = 0;
 
-    if (categoryId == 1) {
+    if (category == 1) {
       total = amount * 4;
     }
-    if (categoryId == 2 || categoryId == 5) {
+    if (category == 2 || category == 5) {
       total = amount;
     }
-    if (categoryId == 3) {
+    if (category == 3) {
       total = amount * 5 * 4;
     }
-    if (categoryId == 4) {
+    if (category == 4) {
       total = amount * 2 * 4;
     }
-    if (categoryId == 6) {
+    if (category == 6) {
       total = amount * 30;
     }
     // Call the services.addExpense function with the calculated total and categoryId
-    await services.addExpense(expense, amount, total, categoryId);
+    await services.addExpense(expense, amount, total, category);
 
     // Redirect to the home route after adding the expense
     res.redirect("/");
